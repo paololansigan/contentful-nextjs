@@ -7,10 +7,12 @@ export async function getStaticProps() {
   });
 
   const res = await client.getEntries({ content_type: "product" });
+  const res2 = await client.getEntries({ content_type: "stickyMenu" });
 
   return {
     props: {
       products: res.items,
+      stickyMenu: res2.items,
       revalidate: 1,
     },
   };

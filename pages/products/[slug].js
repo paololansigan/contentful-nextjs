@@ -40,8 +40,12 @@ export async function getStaticProps({ params }) {
     };
   }
 
+  const res2 = await client.getEntries({
+    content_type: "stickyMenu",
+  });
+
   return {
-    props: { product: items[0] }, // get the first item
+    props: { product: items[0], stickyMenu: res2.items }, // get the first item
     revalidate: 1,
   };
 }

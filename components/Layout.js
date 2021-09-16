@@ -1,8 +1,10 @@
 import Link from "next/link";
+import StickyMenu from "./StickyMenu";
 
-export default function Layout({ children }) {
+export default function Layout({ children, ...props }) {
   return (
     <div className="layout">
+      <StickyMenu menus={props.stickyMenu} />
       <header>
         <Link href="/">
           <a>
