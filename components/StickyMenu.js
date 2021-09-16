@@ -1,29 +1,37 @@
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from "react-scroll";
 
 export default function StickyMenu({ menus }) {
   return (
     <div id="navbar">
       {menus
-        .sort((a, b) => {
-          return a.fields.slugMenu === "home" ? -1 : b.fields.slugMenu ? 1 : 0; // prioritize home
-        })
-        .map((menu) => {
-          const { title, slugMenu } = menu.fields;
+        ? menus
+            .sort((a, b) => {
+              return a.fields.slugMenu === "home"
+                ? -1
+                : b.fields.slugMenu
+                ? 1
+                : 0; // prioritize home
+            })
+            .map((menu) => {
+              const { title, slugMenu, pathname } = menu.fields;
 
-          if (slugMenu === "home") {
-            return (
-              <Link href={`/`} key={slugMenu}>
-                <a>{title}</a>
-              </Link>
-            );
-          } else {
-            return (
-              <Link href={`/${slugMenu}`} key={slugMenu}>
-                <a>{title}</a>
-              </Link>
-            );
-          }
-        })}
+              return (
+                <Link
+                  to={slugMenu}
+                  key={slugMenu}
+                  spy={true}
+                  smooth={true}
+                  offset={-10}
+                  duration={500}
+                  delay={100}
+                  style={{ cursor: "pointer" }}
+                >
+                  <a>{title}</a>
+                </Link>
+              );
+            })
+        : ""}
 
       <style jsx>{`
         /* Style the navbar */

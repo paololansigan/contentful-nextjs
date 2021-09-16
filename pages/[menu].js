@@ -24,7 +24,6 @@ export async function getStaticProps({ params }) {
   });
 
   const res2 = await client.getEntries({ content_type: "stickyMenu" });
-
   if (!items.length) {
     return {
       redirect: {
@@ -39,6 +38,6 @@ export async function getStaticProps({ params }) {
   };
 }
 
-export default function menu({ slugMenu }) {
-  return <div>{slugMenu.fields.title}</div>;
+export default function menu({ slugMenu, ...props }) {
+  return <div>{slugMenu?.fields.title}</div>;
 }

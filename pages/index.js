@@ -1,5 +1,7 @@
 import { createClient } from "contentful";
 import ProductCard from "@components/ProductCard";
+import { Element } from "react-scroll";
+
 export async function getStaticProps() {
   const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID,
@@ -18,18 +20,30 @@ export async function getStaticProps() {
   };
 }
 
-export default function Products({ products }) {
+export default function Products({ products, stickyMenu }) {
   return (
     <div className="product-list">
-      {products.map((product) => (
+      {/* {products.map((product) => (
         <ProductCard key={product.sys.id} product={product} />
-      ))}
+      ))} */}
+
+      {stickyMenu.map((menu) => {
+        const { slugMenu, title } = menu.fields;
+        return (
+          <section style={{ height: "100vh", width: "100%" }} key={slugMenu}>
+            <Element name={slugMenu} className="element">
+              <h2>{title}</h2>
+            </Element>
+          </section>
+        );
+      })}
 
       <style jsx>{`
         .product-list {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-gap: 20px 60px;
+          // display: flex;
+          // display: grid;
+          // grid-template-columns: 1fr 1fr;
+          // grid-gap: 20px 60px;
         }
       `}</style>
     </div>

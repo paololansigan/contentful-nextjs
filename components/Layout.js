@@ -5,17 +5,6 @@ export default function Layout({ children, ...props }) {
   return (
     <div className="layout">
       <StickyMenu menus={props.stickyMenu} />
-      <header>
-        <Link href="/">
-          <a>
-            <h1>
-              <span>sample</span>
-              <span>Product List</span>
-            </h1>
-            {/* <h2>Spread The Joy</h2> */}
-          </a>
-        </Link>
-      </header>
 
       <div className="page-content">{children}</div>
 
